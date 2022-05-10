@@ -11,13 +11,11 @@
   "CodePath": "/code/",
   "RootNamespace": "Sandbox",
   "Metadata": {
-    "MapList": [
-      "facepunch.construct"
-    ],
+    "MapList": [],
     "PerMapRanking": false,
     "LeaderboardType": 0,
     "RankType": 0,
-    "MapSelect": 0,
+    "MapSelect": 2,
     "GameNetworkType": 0,
     "MaxPlayers": 32,
     "MinPlayers": 1
