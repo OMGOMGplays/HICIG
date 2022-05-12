@@ -70,8 +70,8 @@ namespace HICIG
 				ChatBox.AddInformation(To.Everyone, "Game Stopped.");
 				UpdateGameStateClient(To.Everyone, GameStatus.Idle);
 
-				UpdateTeamScoreClient(To.Everyone, TeamList.Ruds, RudsTotalCaps);
-				UpdateTeamScoreClient(To.Everyone, TeamList.Blebs, BlebsTotalCaps);
+				UpdateTeamScoreClient(To.Everyone, HICIGPlayer.TeamList.Ruds, RudsTotalCaps);
+				UpdateTeamScoreClient(To.Everyone, HICIGPlayer.TeamList.Blebs, BlebsTotalCaps);
 			}
 		}
 
@@ -132,8 +132,8 @@ namespace HICIG
 				ChatBox.AddInformation(To.Everyone, "Game is now starting.");
 				UpdateGameStateClient(To.Everyone, CurrGameStatus);
 
-				SetTeamScoreClient(To.Everyone, TeamList.Ruds, 0);
-				SetTeamScoreClient(To.Everyone, TeamList.Blebs, 0);
+				SetTeamScoreClient(To.Everyone, HICIGPlayer.TeamList.Ruds, 0);
+				SetTeamScoreClient(To.Everyone, HICIGPlayer.TeamList.Blebs, 0);
 			}
 		}
 
@@ -174,8 +174,8 @@ namespace HICIG
 
 				using (Prediction.Off()) 
 				{
-					SetTeamScoreClient(To.Everyone, TeamList.Ruds, 0);
-					SetTeamScoreClient(To.Everyone, TeamList.Blebs, 0);
+					SetTeamScoreClient(To.Everyone, HICIGPlayer.TeamList.Ruds, 0);
+					SetTeamScoreClient(To.Everyone, HICIGPlayer.TeamList.Blebs, 0);
 				}
 			}
 		}
@@ -201,15 +201,15 @@ namespace HICIG
 				oldSkel.Delete();
 		}
 
-		public static void DeclareWinner(TeamList winningTeam) 
+		public static void DeclareWinner(HICIGPlayer.TeamList winningTeam) 
 		{
 			Event.Run("HICIG_EndGame");
 
-			if (winningTeam == TeamList.Ruds)
+			if (winningTeam == HICIGPlayer.TeamList.Ruds)
 				using (Prediction.Off())
 					SetWinnerClient(To.Everyone, true, false);
 
-			else if (winningTeam == TeamList.Blebs)
+			else if (winningTeam == HICIGPlayer.TeamList.Blebs)
 				using (Prediction.Off())
 					SetWinnerClient(To.Everyone, false, true);
 
@@ -230,11 +230,11 @@ namespace HICIG
 		}
 
 		[ClientRpc]
-		public static void SetTeamScoreClient(TeamList teamUpdate, int amount) 
+		public static void SetTeamScoreClient(HICIGPlayer.TeamList teamUpdate, int amount) 
 		{
-			if (teamUpdate == TeamList.Ruds)
+			if (teamUpdate == HICIGPlayer.TeamList.Ruds)
 				RudsTotalCaps = amount;
-			else if (teamUpdate == TeamList.Blebs)
+			else if (teamUpdate == HICIGPlayer.TeamList.Blebs)
 				BlebsTotalCaps = amount;
 			else 
 			{
@@ -244,11 +244,11 @@ namespace HICIG
 		}
 
 		[ClientRpc]
-		public static void UpdateTeamScoreClient(TeamList teamUpdate, int newAmount) 
+		public static void UpdateTeamScoreClient(HICIGPlayer.TeamList teamUpdate, int newAmount) 
 		{
-			if (teamUpdate == TeamList.Ruds)
+			if (teamUpdate == HICIGPlayer.TeamList.Ruds)
 				RudsTotalCaps += newAmount;
-			else if (teamUpdate == TeamList.Blebs)
+			else if (teamUpdate == HICIGPlayer.TeamList.Blebs)
 				BlebsTotalCaps += newAmount;
 		}
 	}

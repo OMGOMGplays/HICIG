@@ -9,13 +9,16 @@
   "ResourcePaths": null,
   "HasCode": true,
   "CodePath": "/code/",
-  "RootNamespace": "Sandbox",
+  "RootNamespace": "HICIG",
   "Metadata": {
-    "MapList": [],
+    "MapList": [
+      "oop.hicigtm",
+      "facepunch.construct"
+    ],
     "PerMapRanking": false,
     "LeaderboardType": 0,
     "RankType": 0,
-    "MapSelect": 2,
+    "MapSelect": 3,
     "GameNetworkType": 0,
     "MaxPlayers": 32,
     "MinPlayers": 1

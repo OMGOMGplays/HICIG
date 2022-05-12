@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace HICIG 
 {
 	[Hammer.EditorModel("models/citizen_props/crate01.vmdl")]
-	[Library("c_cappoint")]
+	[Library("c_cappoint"), AutoGenerate]
 	[Display(Name = "Capture Point"), Category("Captures"), Icon("move_to_inbox")]
 	partial class CapturePoint : Prop, IUse 
 	{
@@ -18,7 +18,7 @@ namespace HICIG
 			Ruds
 		}
 
-		[Property("teamEnum", Title = "Which team does this belong to?")]
+		[Property, Display(Name = "Which team does this CapPoint belong to?", Description = "Changes which team that this capture point belongs to.")]
 		public Flags TeamEnum {get; set;}
 
 		public override void Spawn()
@@ -47,32 +47,32 @@ namespace HICIG
 
 				if (player.IsHoldingSkel) 
 				{
-					if (player.CurrTeam == TeamList.Ruds) 
+					if (player.CurrTeam == HICIGPlayer.TeamList.Ruds) 
 					{
 						HICIGGame.RudsTotalCaps++;
 						using (Prediction.Off())
-							HICIGGame.UpdateTeamScoreClient(To.Everyone, TeamList.Ruds, 1);
+							HICIGGame.UpdateTeamScoreClient(To.Everyone, HICIGPlayer.TeamList.Ruds, 1);
 					}
-					else if (player.CurrTeam == TeamList.Blebs) 
+					else if (player.CurrTeam == HICIGPlayer.TeamList.Blebs) 
 					{
 						HICIGGame.BlebsTotalCaps++;
 						using (Prediction.Off())
-							HICIGGame.UpdateTeamScoreClient(To.Everyone, TeamList.Blebs, 1);
+							HICIGGame.UpdateTeamScoreClient(To.Everyone, HICIGPlayer.TeamList.Blebs, 1);
 					}
 
 					if (HICIGGame.RudsTotalCaps >= HICIGGame.WinGoal) 
 					{
 						HICIGGame.RudsTotalCaps = HICIGGame.WinGoal;
-						HICIGGame.DeclareWinner(TeamList.Ruds);
+						HICIGGame.DeclareWinner(HICIGPlayer.TeamList.Ruds);
 
-						HICIGGame.SetTeamScoreClient(To.Everyone, TeamList.Ruds, HICIGGame.WinGoal);
+						HICIGGame.SetTeamScoreClient(To.Everyone, HICIGPlayer.TeamList.Ruds, HICIGGame.WinGoal);
 					}
 					else if (HICIGGame.BlebsTotalCaps >= HICIGGame.WinGoal) 
 					{
 						HICIGGame.BlebsTotalCaps = HICIGGame.WinGoal;
-						HICIGGame.DeclareWinner(TeamList.Blebs);
+						HICIGGame.DeclareWinner(HICIGPlayer.TeamList.Blebs);
 
-						HICIGGame.SetTeamScoreClient(To.Everyone, TeamList.Blebs, HICIGGame.WinGoal);
+						HICIGGame.SetTeamScoreClient(To.Everyone, HICIGPlayer.TeamList.Blebs, HICIGGame.WinGoal);
 					}
 
 					player.IsHoldingSkel = false;

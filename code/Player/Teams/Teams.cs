@@ -5,15 +5,15 @@ using System.Collections.Generic;
 
 namespace HICIG 
 {
-	public enum TeamList 
+	public partial class HICIGPlayer 
 	{
-		Unassigned = 0,
-		Ruds,
-		Blebs
-	}
+		public enum TeamList 
+		{
+			Unassigned = 0,
+			Ruds,
+			Blebs
+		}
 
-	partial class HICIGPlayer 
-	{
 		public TeamList CurrTeam;
 	
 		private TimeSince TimeSinceSwitchedTeam;

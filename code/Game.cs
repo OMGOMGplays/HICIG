@@ -4,7 +4,7 @@ namespace HICIG
 {
 	public partial class HICIGGame : Game
 	{
-		// private HICIGHud hud;
+		private HICIGHud hud;
 
 		public HICIGGame()
 		{
@@ -14,7 +14,7 @@ namespace HICIG
 
 			if (IsClient) 
 			{
-				// hud = new HICIGHud();
+				hud = new HICIGHud();
 			}
 		}
 
@@ -23,16 +23,16 @@ namespace HICIG
 		{
 			if (!IsClient) return;
 
-			// hud?.Delete();
-			// hud = new HICIGHud();
+			hud?.Delete();
+			hud = new HICIGHud();
 		}
 
 		public override void ClientJoined( Client cl )
 		{
 			base.ClientJoined( cl );
 
-			var player = new HICIGPlayer();
-			player.Spawn();
+			var player = new HICIGPlayer(cl);
+			player.InitialSpawn();
 
 			cl.Pawn = player;
 		}

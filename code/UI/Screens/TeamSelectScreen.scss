@@ -1,0 +1,91 @@
+TeamSelectScreen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.0;
+    transition: all 0.1s ease-in;
+    transform: scale(0.85);
+    backdrop-filter: blur(25px);
+    justify-content: center;
+    pointer-events: all;
+    align-items: center;
+    font-family: Arial;
+    box-shadow: 0px 0px 15px black;
+
+    &.open {
+        opacity: 0.65;
+        transform: scale(0.75);
+    }
+
+    .RudsTeamMenu {
+        left: 0%;
+        width: 50%;
+        height: 100%;
+        box-shadow: 0 0 5px black;
+        background-color: rgb(131, 12, 12);
+        background-image: url(ui/rudstemp.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 75%;
+
+        &:hover {
+            opacity: 0.65;
+            transition: all .5s ease-out;
+            width: 65%;
+        }
+    }
+
+    .RudsBtn {
+        width: 100%;
+        height: 100%;
+        background-color: rgb(187, 0, 0);
+        text-align: center;
+        font-size: 35px;
+        color: white;
+        cursor: pointer;
+        transition: all 0.1s all;
+        text-shadow: 0 0 5px black;
+        opacity: .5;
+        
+        &:hover {
+            opacity: .75;
+            transition: all 0.1s ease-in;
+        }
+    }
+
+    .BlebsBtn {
+        width: 100%;
+        height: 100%;
+        background-color: rgb(21, 21, 168);
+        text-align: center;
+        font-size: 35px;
+        color: white;
+        cursor: pointer;
+        transition: all 0.1s all;
+        text-shadow: 0 0 5px black;
+        opacity: .5;
+
+        &:hover {
+            opacity: .75;
+            transition: all 0.1s ease-in;
+        }
+    }
+
+    .BlebsTeamMenu {
+        right: 0%;
+        width: 50%;
+        height: 100%;
+        box-shadow: 0 0 5px black;
+        background-color: rgb(4, 4, 100);
+        background-image: url(ui/blebstemp.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 75%;
+
+        &:hover {
+            opacity: .65;
+            transition: all .5s ease-out;
+            width: 65%;
+        }
+    }
+}

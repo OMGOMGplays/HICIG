@@ -7,32 +7,48 @@ using System.ComponentModel.DataAnnotations;
 namespace HICIG 
 {
 	[Hammer.EditorModel("models/skelhead/skelhead.vmdl")]
-	[Library("c_skelhead")]
+	[Library("c_skelhead"), AutoGenerate]
 	[Display(Name = "Skeleton Head"), Category("Captures"), Icon("add_reaction")]
-	public class SkelHead : Prop, IUse
+	public class SkelHead : Prop
 	{
-		[Flags]
 		public enum Flags 
 		{
 			Blebs = 1,
 			Ruds
 		}
 		
+		[Property("teamEnum", Title = "Which team does this skull belong to?")]
+		public Flags TeamEnum {get; set;}
+
 		public override void Spawn()
 		{
 			base.Spawn();
 
 			SetModel("models/skelhead/skelhead.vmdl");
+			SetupPhysicsFromModel(PhysicsMotionType.Dynamic, false);
 		}
 
-		public bool OnUse(Entity ent)
+		public override void StartTouch( Entity other )
 		{
-			return true;
+			base.StartTouch( other );
+
+			if (other is HICIGPlayer player) 
+			{
+				if (player.CurrTeam.ToString() != TeamEnum.ToString()) 
+				{
+					PlayerPickedUpSkel();
+				}
+			}
 		}
 
-		public bool IsUsable(Entity ent) 
+		public void PlayerPickedUpSkel() 
 		{
-			return true;
+			var player = Local.Pawn as HICIGPlayer;
+
+			player.Inventory.DeleteContents();
+			player.Inventory.Add(new SkelHeadWep(), true);
+
+			player.IsHoldingSkel = true;
 		}
 	}
 }

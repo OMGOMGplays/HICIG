@@ -26,7 +26,7 @@
   <PropertyGroup>
 	<OutputPath>../.vs/output/</OutputPath>
 	<DocumentationFile>../.vs/output/hicig.xml</DocumentationFile>
-	<RootNamespace>Sandbox</RootNamespace>
+	<RootNamespace>HICIG</RootNamespace>
   </PropertyGroup>
 
 	<ItemGroup>
